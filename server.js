@@ -6,7 +6,7 @@ app.use(bodyParser.json())
 require('./app/routes/room-types.routes.js')(app);
  
 // Create a Server
-var server = app.listen(8081, function () {
+var server = app.listen(process.env.PORT || 5000, function () {
  
   var host = server.address().address
   var port = server.address().port
