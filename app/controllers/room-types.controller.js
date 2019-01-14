@@ -9,18 +9,26 @@ exports.create = function(req, res) {
     var id = genId();
     newObject.id = id;
     roomTypes.push(newObject);
-    console.log("--->After Post, roomTypes:\n" + JSON.stringify(roomTypes, null, 4));
+    console.log("--->After Post, roomTypes:\n" + JSON.stringify(roomTypes, null, 4));res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.end(JSON.stringify(newObject, null, 4));
 };
 
 exports.findAll = function(req, res) {
     console.log("--->Find All: \n" + JSON.stringify(roomTypes, null, 4));
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.end(JSON.stringify(roomTypes, null, 4));  
 };
 
 exports.findOne = function(req, res) {
     var roomType = roomTypes.find(x => x.id == req.params.id);
     console.log("--->Find one: \n" + JSON.stringify(roomType, null, 4));
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.end(JSON.stringify(roomType, null, 4));
 };
 
@@ -32,6 +40,9 @@ exports.update = function(req, res) {
         res.status(404).end()
     } else {
         roomTypes[index] = updated;
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+        res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
         res.status(200).end(JSON.stringify(roomTypes[index], null, 4));
     }
 };
@@ -41,6 +52,9 @@ exports.delete = function(req, res) {
     if (index > -1) {
         roomTypes.splice(index, 1);
       }
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.status(200).end();
 };
 
