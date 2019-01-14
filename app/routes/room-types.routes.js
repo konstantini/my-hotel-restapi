@@ -2,6 +2,12 @@ module.exports = function(app) {
  
     var roomTypes = require('../controllers/room-types.controller.js');
  
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
     app.post('/api/room-types', roomTypes.create);
  
     app.get('/api/room-types', roomTypes.findAll);
