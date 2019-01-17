@@ -9,7 +9,8 @@ exports.create = function(req, res) {
     var id = genId();
     newObject.id = id;
     roomTypes.push(newObject);
-    console.log("--->After Post, roomTypes:\n" + JSON.stringify(roomTypes, null, 4));res.header("Access-Control-Allow-Origin", "*");
+    console.log("--->After Post, roomTypes:\n" + JSON.stringify(roomTypes, null, 4));
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.end(JSON.stringify(newObject, null, 4));
@@ -48,10 +49,12 @@ exports.update = function(req, res) {
 };
 
 exports.delete = function(req, res) {
-    var index = roomTypes.findIndex(x => x.id = req.params.id);
+    console.log("--->DELETE item with id " + req.params.id);
+    var index = roomTypes.findIndex(x => x.id == req.params.id);
     if (index > -1) {
         roomTypes.splice(index, 1);
-      }
+    }
+    console.log("--->After Delete, roomTypes:\n" + JSON.stringify(roomTypes, null, 4));
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
