@@ -60,7 +60,7 @@ exports.update = function(req, res) {
 };
 
 exports.delete = function(req, res) {
-    var index = items.findIndex(x => x.id = req.params.id);
+    var index = items.findIndex(x => x.id == req.params.id);
     if (index > -1) {
         items.splice(index, 1);
       }
